@@ -1,0 +1,10 @@
+.git/
+.gitignore
+*.tgz
+*.tmp
+*.log
+.vscode/
+.idea/
+*.swp
+README.md
+.github/

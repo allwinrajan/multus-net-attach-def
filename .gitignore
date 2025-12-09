@@ -1,0 +1,6 @@
+*.tgz
+*.tmp
+*.log
+.vscode/
+.idea/
+*.swp

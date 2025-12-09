@@ -1,0 +1,40 @@
+{{- $global := .Values.global }}
+{{- range $name, $config := .Values.definitions }}
+{{- if $config.enabled }}
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: macvlan-{{ $name }}-{{ regexFind "[0-9]+$" $config.rangeStart }}-{{ regexFind "[0-9]+$" $config.rangeEnd }}
+  namespace: {{ $config.namespace | default "default" }}
+  labels:
+    app.kubernetes.io/name: multus-network-definitions
+    app.kubernetes.io/component: network-attachment
+    app.kubernetes.io/managed-by: helm
+    network-type: {{ $name }}
+  annotations:
+    description: {{ $config.description | quote }}
+spec:
+  config: '{
+    "cniVersion": "{{ $config.cniVersion | default $global.cniVersion }}",
+    "type": "{{ $config.type | default $global.type }}",
+    "master": "{{ $config.masterInterface | default $global.masterInterface }}",
+    "mode": "{{ $config.mode | default $global.mode }}",
+    "ipam": {
+      "type": "host-local",
+      "subnet": "{{ $config.subnet | default $global.subnet }}",
+      "rangeStart": "{{ $config.rangeStart }}",
+      "rangeEnd": "{{ $config.rangeEnd }}",
+      "routes": [
+        { "dst": "0.0.0.0/0", "gw": "{{ $config.gateway | default $global.gateway }}" }
+      ],
+      "gateway": "{{ $config.gateway | default $global.gateway }}"
+    },
+    "dns": {
+      "nameservers": {{ if and $config.dns $config.dns.nameservers }}{{ $config.dns.nameservers | toJson }}{{ else }}{{ $global.dns.nameservers | toJson }}{{ end }},
+      "domain": "{{ if and $config.dns $config.dns.domain }}{{ $config.dns.domain }}{{ else }}{{ $global.dns.domain }}{{ end }}",
+      "search": {{ if and $config.dns $config.dns.search }}{{ $config.dns.search | toJson }}{{ else }}{{ $global.dns.search | toJson }}{{ end }}
+    }
+  }'
+{{- end }}
+{{- end }}

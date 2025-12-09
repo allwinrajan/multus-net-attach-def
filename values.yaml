@@ -1,0 +1,114 @@
+# NetworkAttachmentDefinitions Configuration
+# Prerequisites: Multus CNI must be already installed in the cluster
+
+# Global network settings - applies to all definitions unless overridden
+global:
+  masterInterface: ens34  # Change this to match your host network interface
+  subnet: 192.168.9.0/24
+  gateway: 192.168.9.1
+  cniVersion: "0.3.1"
+  type: macvlan
+  mode: bridge
+  dns:
+    nameservers:
+      - 8.8.8.8
+      - 192.168.9.1
+    domain: local
+    search:
+      - local
+
+# Individual network definitions
+# Each network creates a NetworkAttachmentDefinition resource
+definitions:
+  freeswitch:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.45
+    rangeEnd: 192.168.9.55
+    description: FreeSWITCH VoIP Server Network
+    # Override global settings if needed
+    # masterInterface: ens192
+    # gateway: 192.168.9.1
+    # dns:
+    #   nameservers: ["8.8.8.8"]
+  
+  kamailio:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.38
+    rangeEnd: 192.168.9.40
+    description: Kamailio SIP Proxy Network
+  
+  rtpengine:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.41
+    rangeEnd: 192.168.9.43
+    description: RTP Engine Media Proxy Network
+  
+  mysql:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.44
+    rangeEnd: 192.168.9.46
+    description: MySQL Database Network
+  
+  redis:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.47
+    rangeEnd: 192.168.9.49
+    description: Redis Cache Network
+  
+  hpa:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.50
+    rangeEnd: 192.168.9.52
+    description: HPA (Homer/Prometheus/Alertmanager) Network
+  
+  mongodb:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.53
+    rangeEnd: 192.168.9.55
+    description: MongoDB Database Network
+  
+  homer:
+    enabled: true
+    namespace: default
+    rangeStart: 192.168.9.56
+    rangeEnd: 192.168.9.58
+    description: Homer SIP Capture Network
+  
+  # Additional optional networks
+  kamailio-dmq:
+    enabled: false
+    namespace: kamailio-system
+    rangeStart: 192.168.9.59
+    rangeEnd: 192.168.9.62
+    description: Kamailio DMQ Replication Network
+  
+  minio:
+    enabled: false
+    namespace: default
+    rangeStart: 192.168.9.80
+    rangeEnd: 192.168.9.82
+    description: MinIO Object Storage Network
+  
+  custom:
+    enabled: false
+    namespace: default
+    rangeStart: 192.168.9.90
+    rangeEnd: 192.168.9.95
+    description: Custom Application Network
+    # Example with full overrides:
+    # masterInterface: ens224
+    # subnet: 10.0.0.0/24
+    # gateway: 10.0.0.1
+    # type: ipvlan
+    # mode: l3
+    # dns:
+    #   nameservers: ["1.1.1.1", "8.8.8.8"]
+    #   domain: custom.local
+    #   search: ["custom.local", "svc.cluster.local"]

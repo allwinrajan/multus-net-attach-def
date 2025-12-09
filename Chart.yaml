@@ -1,0 +1,23 @@
+apiVersion: v2
+name: network-definitions
+description: A Helm chart for deploying NetworkAttachmentDefinitions for VoIP and telecommunications infrastructure
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - multus
+  - network-attachment-definition
+  - networking
+  - kubernetes
+  - macvlan
+  - voip
+  - freeswitch
+  - kamailio
+home: https://github.com/allwinrajan/network-definitions-helm
+sources:
+  - https://github.com/k8snetworkplumbingwg/multus-cni
+maintainers:
+  - name: allwinrajan
+    email: allwinrajan@example.com
+annotations:
+  category: Networking
