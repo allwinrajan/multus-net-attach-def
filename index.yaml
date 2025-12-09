@@ -5,10 +5,10 @@ entries:
       category: Networking
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-12-09T12:50:04.235430672+05:30"
+    created: "2025-12-09T14:49:47.306609882+05:30"
     description: A Helm chart for deploying NetworkAttachmentDefinitions for VoIP
       and telecommunications infrastructure
-    digest: dd81a4b486ff501cd86fa261a0886e8762ec10b8bc87c01d63eeb2a426460097
+    digest: 420166800e1d03898f8087c97132d8e91d36624a1a787dfac34f2dd055a2fae4
     home: https://github.com/allwinrajan/network-definitions-helm
     keywords:
     - multus
@@ -27,6 +27,6 @@ entries:
     - https://github.com/k8snetworkplumbingwg/multus-cni
     type: application
     urls:
-    - https://allwinrajan.github.io/multus-net-attach-def/network-definitions-1.0.0.tgz
+    - https://github.com/allwinrajan/multus-net-attach-def/network-definitions-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-09T12:50:04.234372845+05:30"
+generated: "2025-12-09T14:49:47.305548937+05:30"

@@ -33,7 +33,7 @@ definitions:
     #   nameservers: ["8.8.8.8"]
   
   kamailio:
-    enabled: true
+    enabled: false
     namespace: default
     rangeStart: 192.168.9.38
     rangeEnd: 192.168.9.40
@@ -54,28 +54,28 @@ definitions:
     description: MySQL Database Network
   
   redis:
-    enabled: true
+    enabled: false
     namespace: default
     rangeStart: 192.168.9.47
     rangeEnd: 192.168.9.49
     description: Redis Cache Network
   
   hpa:
-    enabled: true
+    enabled: false
     namespace: default
     rangeStart: 192.168.9.50
     rangeEnd: 192.168.9.52
     description: HPA (Homer/Prometheus/Alertmanager) Network
   
   mongodb:
-    enabled: true
+    enabled: false
     namespace: default
     rangeStart: 192.168.9.53
     rangeEnd: 192.168.9.55
     description: MongoDB Database Network
   
   homer:
-    enabled: true
+    enabled: false
     namespace: default
     rangeStart: 192.168.9.56
     rangeEnd: 192.168.9.58
@@ -83,7 +83,7 @@ definitions:
   
   # Additional optional networks
   kamailio-dmq:
-    enabled: false
+    enabled: true
     namespace: kamailio-system
     rangeStart: 192.168.9.59
     rangeEnd: 192.168.9.62
