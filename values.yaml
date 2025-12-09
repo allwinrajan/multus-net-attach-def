@@ -23,8 +23,8 @@ definitions:
   freeswitch:
     enabled: true
     namespace: default
-    rangeStart: 192.168.9.45
-    rangeEnd: 192.168.9.55
+    rangeStart: 192.168.9.80
+    rangeEnd: 192.168.9.82
     description: FreeSWITCH VoIP Server Network
     # Override global settings if needed
     # masterInterface: ens192
@@ -42,15 +42,15 @@ definitions:
   rtpengine:
     enabled: true
     namespace: default
-    rangeStart: 192.168.9.41
-    rangeEnd: 192.168.9.43
+    rangeStart: 192.168.9.83
+    rangeEnd: 192.168.9.85
     description: RTP Engine Media Proxy Network
   
   mysql:
     enabled: true
     namespace: default
-    rangeStart: 192.168.9.44
-    rangeEnd: 192.168.9.46
+    rangeStart: 192.168.9.86
+    rangeEnd: 192.168.9.88
     description: MySQL Database Network
   
   redis:
@@ -85,8 +85,8 @@ definitions:
   kamailio-dmq:
     enabled: true
     namespace: kamailio-system
-    rangeStart: 192.168.9.59
-    rangeEnd: 192.168.9.62
+    rangeStart: 192.168.9.89
+    rangeEnd: 192.168.9.91
     description: Kamailio DMQ Replication Network
   
   minio:
